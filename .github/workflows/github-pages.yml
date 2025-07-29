@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-    #  - master
+      - master
   workflow_dispatch: # This allows manual trigger
   
 jobs:
@@ -11,6 +11,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1'
+      - name: Update RubyGems
+        run: gem update --system 3.3.22
+      - name: Install dependencies
+        run: bundle install
       - uses:  helaili/jekyll-action@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
