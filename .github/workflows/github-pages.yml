@@ -3,8 +3,9 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - master
-
+    #  - master
+  workflow_dispatch: # This allows manual trigger
+  
 jobs:
   github-pages:
     runs-on: ubuntu-latest
